@@ -17,7 +17,7 @@
         <tbody>
           <tr v-for="customer in filterBy(customers, filterInput)">
             <!--<td>{{customer._id}}</td>-->
-            <td><img class="img-circle" v-bind:src="customer.avatar" alt="Фото не найдено!"></td>
+            <td><img class="img-circle img-circle--size" v-bind:src="customer.avatar" onerror="this.src = 'http://image.freepik.com/free-icon/user-male-shape-in-a-circle-ios-7-interface-symbol_318-35357.jpg'"></td> 
             <td>{{customer.name}}</td>
             <td>{{customer.phone}}</td>
             <td><router-link class="btn btn-default" v-bind:to="'/customer/'+customer._id">Подробнее</router-link></td>
@@ -69,7 +69,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.img-circle{
+.img-circle--size{
   width: 70px;
   height: 70px;
 }

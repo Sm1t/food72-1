@@ -8,6 +8,7 @@
         <thead>
           <tr>
             <!--<th>ID</th>-->
+            <th>Изображение</th>
             <th>Наименование</th>
             <th>Категория</th>
             <th>Каллории</th>
@@ -19,6 +20,7 @@
         <tbody>
           <tr v-for="dish in filterBy(dishes, filterInput)">
             <!--<td>{{dish._id}}</td>-->
+            <td><img class="img-circle img-circle--size" v-bind:src="dish.dishPicture" onerror="this.src = 'http://image.freepik.com/free-icon/no-translate-detected_318-27155.jpg'"></td> 
             <td>{{dish.name}}</td>
             <td>{{dish.category}}</td>
             <td>{{dish.callories}}</td>
@@ -51,7 +53,7 @@
           });
       },
       filterBy(list, value){
-        value = value.charAt(0).toUpperCase() + value.slice(1);
+        //value = value.charAt(0).toUpperCase() + value.slice(1);
         return list.filter(function(dish){
           return dish.name.indexOf(value) > -1;
         });
@@ -74,5 +76,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.img-circle--size{
+  width: 70px;
+  height: 70px;
+}
 </style>

@@ -63,7 +63,7 @@
       filterBy(list, value){
         value = value.charAt(0).toUpperCase() + value.slice(1);
         return list.filter(function(order){
-          return order.status.indexOf(value) > -1;
+          return order.user.indexOf(value) > -1;
         });
       },
       //Красивый вывод блюд
