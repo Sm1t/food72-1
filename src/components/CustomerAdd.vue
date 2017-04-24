@@ -43,7 +43,7 @@
     methods: {
         addCustomer(e){
             if(!this.customer.name || !this.customer.phone || !this.customer.avatar){
-                this.alert = 'Please fill in all required fields';
+                this.alert = 'Пожалуйста, заполните все поля!';
             } else {
                 let newCustomer = {
                     name: this.customer.name,

@@ -5,6 +5,10 @@ import App from './App'
 import VueRouter from 'vue-router'
 import vueResource from 'vue-resource'
 import About from './components/About'
+
+import WorkerAdd from './components/WorkerAdd'
+import Workers from './components/Workers'
+
 import Customers from './components/Customers'
 import CustomerDetails from './components/CustomerDetails'
 import CustomerEdit from './components/CustomerEdit'
@@ -29,6 +33,9 @@ const router = new VueRouter({
   routes: [
     {path:'/', component: Customers},
     {path: '/about', component: About},
+    
+    {path: '/workeradd', component: WorkerAdd},
+    {path: '/workers', component: Workers},
 
     {path:'/customers', component: Customers},
     {path: '/customer/:id', component: CustomerDetails},
@@ -70,12 +77,14 @@ new Vue({
             <li><router-link to="/customers">Клиенты</router-link></li>
             <li><router-link to="/orders">Заказы</router-link></li>
             <li><router-link to="/dishes">Блюда</router-link></li>
+            <li><router-link to="/workers">Сотрудники</router-link></li>
             <li><router-link to="/about">Справка</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><router-link to="/customeradd">Добавить клиента</router-link></li>
             <li><router-link to="/orderadd">Добавить заказ</router-link></li>
             <li><router-link to="/dishadd">Добавить блюдо</router-link></li>
+            <li><router-link to="/workeradd">Добавить сотрудника</router-link></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

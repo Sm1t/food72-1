@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label>Состав</label>
-                <input type="text" class="form-control" placeholder="Состав" v-for="composition in compositions" v-model="composition.name">
+                <input type="text" class="form-control" placeholder="Состав" v-model="dish.description">
             </div>
         </div>
         <div class="well">
