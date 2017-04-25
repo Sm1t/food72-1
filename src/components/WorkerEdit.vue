@@ -1,38 +1,27 @@
 <template>
-  <div class="add container">
+  <div class="edit container">
     <Alert v-if="alert" v-bind:message="alert" />
-    <h1 class="page-header">Добавить сотрудника</h1>
-    <form v-on:submit="addWorker">
+    <h1 class="page-header">Редактор пользователей</h1>
+    <form v-on:submit="updateworker">
         <div class="well">
             <h4>Общая информация</h4>
             <div class="form-group">
                 <label>Имя</label>
                 <input type="text" class="form-control" placeholder="Имя" v-model="worker.name">
-            </div>  
+            </div>
             <div class="form-group">
                 <label>Фамилия</label>
                 <input type="text" class="form-control" placeholder="Фамилия" v-model="worker.surname">
             </div>
         </div>
         <div class="well">
-            <h4>Контакты</h4>
+            <h4>Рабочая информация</h4>
             <div class="form-group">
                 <label>Должность</label>
                 <input type="text" class="form-control" placeholder="Должность" v-model="worker.position">
             </div>
         </div>
-        <div class="well">
-            <h4>Аутентификаци</h4>
-            <div class="form-group">
-                <label>Логин</label>
-                <input type="text" class="form-control" placeholder="Логин" v-model="worker.login">
-            </div>
-            <div class="form-group">
-                <label>Пароль</label>
-                <input type="password" class="form-control" placeholder="Пароль" v-model="worker.password">
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Добавить</button>
+        <button type="submit" class="btn btn-primary">Применить</button>
     </form>
   </div>
 </template>
@@ -48,22 +37,27 @@
         }
     },
     methods: {
-        addWorker(e){
-            if(!this.worker.name || !this.worker.surname || !this.worker.position || !this.worker.login || !this.worker.password){
+        fetchworker(id){
+            this.$http.get('http://arusremservis.ru/employees/'+id)
+            .then(function(response){
+                this.worker = response.body;
+            });
+        },
+        updateworker(e){
+            if(!this.worker.name || !this.worker.surname || !this.worker.position){
                 this.alert = 'Пожалуйста, заполните все поля!';
             } else {
-                let newWorker = {
+                let updworker = {
                     name: this.worker.name,
                     surname: this.worker.surname,
-                    position: this.worker.position,
-                    login: this.worker.login,
-                    password: this.worker.password,
+                    position: this.worker.position,          
                 }
 
-                this.$http.post('http://arusremservis.ru/employees', newWorker)
+                this.$http.post('http://arusremservis.ru/employees/'+this.$route.params.id, updworker)
                     .then(function(response){
                         console.log(response);
-                        this.alert = 'Сотрудник добавлен!';                      
+                        this.alert = 'Сотрудник обновлён!';
+                        /*this.$router.push({path: '/', query: {alert: 'worker Updated'}});*/
                     });
 
                 e.preventDefault();
@@ -71,7 +65,10 @@
             e.preventDefault();
         }
     },
-    components: {
+    created: function(){
+        this.fetchworker(this.$route.params.id);
+    },
+    components:{
         Alert
     }
     }

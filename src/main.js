@@ -6,8 +6,12 @@ import VueRouter from 'vue-router'
 import vueResource from 'vue-resource'
 import About from './components/About'
 
-import WorkerAdd from './components/WorkerAdd'
+import Login from './components/Login'
+
 import Workers from './components/Workers'
+import WorkerDetails from './components/WorkerDetails'
+import WorkerEdit from './components/WorkerEdit'
+import WorkerAdd from './components/WorkerAdd'
 
 import Customers from './components/Customers'
 import CustomerDetails from './components/CustomerDetails'
@@ -33,9 +37,14 @@ const router = new VueRouter({
   routes: [
     {path:'/', component: Customers},
     {path: '/about', component: About},
-    
-    {path: '/workeradd', component: WorkerAdd},
+
+    {path: '/login', component: Login},
+
     {path: '/workers', component: Workers},
+    {path: '/worker/:id', component: WorkerDetails},
+    {path: '/workeredit/:id', component: WorkerEdit},
+    {path: '/workeradd', component: WorkerAdd},
+
 
     {path:'/customers', component: Customers},
     {path: '/customer/:id', component: CustomerDetails},
@@ -85,6 +94,7 @@ new Vue({
             <li><router-link to="/orderadd">Добавить заказ</router-link></li>
             <li><router-link to="/dishadd">Добавить блюдо</router-link></li>
             <li><router-link to="/workeradd">Добавить сотрудника</router-link></li>
+            <li><router-link to="/login">Войти</router-link></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

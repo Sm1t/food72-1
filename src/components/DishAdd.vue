@@ -69,9 +69,10 @@
                     rating: this.dish.rating,
                 }
 
-                this.$http.post('http://arusremservis.ru/dish', newdish)
+                this.$http.post('http://arusremservis.ru/dishes', newdish)
                     .then(function(response){
-                        this.$router.push({path: '/', query: {alert: 'dish Added'}});
+                       /* this.$router.push({path: '/', query: {alert: 'dish Added'}});*/
+                       this.alert = 'Блюдо добавлено!';
                     });
 
                 e.preventDefault();

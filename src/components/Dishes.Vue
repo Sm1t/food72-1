@@ -1,5 +1,5 @@
 <template>
-  <div class="customers container">
+  <div class="dishes container">
     <Alert v-if="alert" v-bind:message="alert" />
     <h1 class="page-header">Менеджер блюд</h1>
     <input class="form-control" placeholder="Введите имя" v-model="filterInput">
