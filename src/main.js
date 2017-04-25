@@ -30,12 +30,13 @@ import DishAdd from './components/DishAdd'
 
 Vue.use(vueResource)
 Vue.use(VueRouter)
+//Vue.use(VueCookie)
 
 const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    {path:'/', component: Customers},
+    {path:'/', component: Login},
     {path: '/about', component: About},
 
     {path: '/login', component: Login},

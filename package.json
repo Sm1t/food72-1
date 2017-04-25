@@ -2,7 +2,7 @@
   "name": "vcustomers",
   "version": "1.0.0",
   "description": "Simple customer manager",
-  "author": "Brad Traversy <me@bradtraversy>",
+  "author": "Eugene Paladosss <evgeniypaladiy@yandex.ru>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "vue": "^2.1.0",
+    "vue-cookie": "^1.1.4",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.1.1"
   },

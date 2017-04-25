@@ -52,7 +52,7 @@
             if(!this.worker.name || !this.worker.surname || !this.worker.position || !this.worker.login || !this.worker.password){
                 this.alert = 'Пожалуйста, заполните все поля!';
             } else {
-                let newWorker = {
+                let newWorker = {   
                     name: this.worker.name,
                     surname: this.worker.surname,
                     position: this.worker.position,
@@ -60,7 +60,7 @@
                     password: this.worker.password,
                 }
 
-                this.$http.post('http://arusremservis.ru/employees', newWorker)
+                this.$http.post('http://arusremservis.ru/employees/login', newWorker)
                     .then(function(response){
                         console.log(response);
                         this.alert = 'Сотрудник добавлен!';                      
