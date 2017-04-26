@@ -23,6 +23,7 @@
     import Alert from './Alert'
     export default {
     name: 'add',
+    token: '',
     data () {
         return {
         worker: {},
@@ -42,7 +43,7 @@
                 this.$http.post('http://arusremservis.ru/employees/login', authWorker)
                     .then(function(response){
                         console.log(response.body.token);
-                        /*this.$cookie.set(response.body.token, 'This is TOKEN!', 1);*/
+                        localStorage.setItem('token', response.body.token);
                         this.alert = 'Добро пожаловать на сервис!';                      
                     },
                     function(err) {

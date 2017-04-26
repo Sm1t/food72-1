@@ -40,11 +40,15 @@
     },
     methods: {
       fetchCustomers(){
-        this.$http.get('http://arusremservis.ru/users')
-          .then(function(response){
-            this.customers = response.body;
-          });
+        this.$http.get('http://arusremservis.ru/users', {
+          headers: {
+            'Authorization': localStorage.getItem('token') 
+          }
+        }).then(function(response){
+          this.customers = response.body
+        });
       },
+
       filterBy(list, value){
         value = value.charAt(0).toUpperCase() + value.slice(1);
         return list.filter(function(customer){
