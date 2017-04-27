@@ -22,7 +22,7 @@
 <script>
     import Alert from './Alert'
     export default {
-    name: 'add',
+    name: '',
     token: '',
     data () {
         return {
@@ -44,7 +44,8 @@
                     .then(function(response){
                         console.log(response.body.token);
                         localStorage.setItem('token', response.body.token);
-                        this.alert = 'Добро пожаловать на сервис!';                      
+                        this.alert = 'Добро пожаловать на сервис!';  
+                        this.$router.push('/orders')                 
                     },
                     function(err) {
                         this.alert = 'Неверный логин или пароль!';

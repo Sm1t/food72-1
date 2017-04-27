@@ -1,6 +1,6 @@
 <template>
   <div class="details container">
-    <router-link to="/">Назад</router-link>
+    <router-link class="btn btn-info" to="/">Назад</router-link>
     <h1 class="page-header">{{customer.name}} 
             <router-link class="btn btn-primary" v-bind:to="'/CustomerEdit/'+customer._id">Редактировать</router-link>
             <button class="btn btn-danger" v-on:click="deleteCustomer(customer._id)">Удалить</button>
@@ -24,15 +24,19 @@ export default {
   },
   methods:{
       fetchCustomer(id){
-          this.$http.get('http://arusremservis.ru/users/'+id)
+          this.$http.get('http://arusremservis.ru/users/'+id, {
+            headers: {
+            'Authorization': localStorage.getItem('token') 
+            }
+          })
           .then(function(response){
             this.customer = response.body;
           });
       },
       deleteCustomer(id){
-          this.$http.delete('http://arusremservis.ru/users/delete/'+  id)
+          this.$http.delete('http://arusremservis.ru/users/'+id)
           .then(function(response){
-            this.$router.push({path: '/', query: {alert: 'Customer Deleted'}});
+            this.$router.push({path: '/', query: {alert: 'Клиент удален!'}});
           });
       }
   },
@@ -42,7 +46,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>

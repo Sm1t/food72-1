@@ -1,6 +1,6 @@
 <template>
   <div class="details container">
-    <router-link to="/">Назад</router-link>
+    <router-link class="btn btn-info" to="/">Назад</router-link>
     <h1 class="page-header">{{dish.name}} 
             <router-link class="btn btn-primary" v-bind:to="'/dishedit/'+dish._id">Редактировать</router-link>
             <button class="btn btn-danger" v-on:click="deletedish(dish._id)">Удалить</button>
@@ -15,7 +15,7 @@
             <li class="list-group-item"><span class="ion-connection-bars" aria-hidden="true"></span> {{dish.rating}}</li>
             <li class="list-group-item ion-compose"><span aria-hidden="true" v-for="composition in compositions"> {{composition.name}}, </span></li>
             <li class="list-group-item ion-compose"><span aria-hidden="true" v-for="topping in toppings"> {{topping.toppingId}}, </span></li>
-            <li class="list-group-item ion-compose"><span aria-hidden="true" v-for="location in locations"> {{location.locationId}}, </span></li>
+            <!--<li class="list-group-item ion-compose"><span aria-hidden="true" v-for="location in locations"> {{location.locationId}}, </span></li>-->
         </ul>
   </div>
 </template>
@@ -26,37 +26,54 @@ export default {
   data () {
     return {
       dish: '',
-      compositions:''
+      compositions:'',
+      toppings: '',
+      locations: ''
     }
   },
   methods:{
       fetchdish(id){
-          this.$http.get('http://arusremservis.ru/dishes/'+id)
-          .then(function(response){
+          this.$http.get('http://arusremservis.ru/dishes/'+id, {
+            headers: {
+              'Authorization': localStorage.getItem('token') 
+            }
+          }).then(function(response){
             this.dish = response.body;
           });
       },
       fetchcompositions(id){
-          this.$http.get('http://arusremservis.ru/dishes/'+id+'/composition')
-          .then(function(response){
+          this.$http.get('http://arusremservis.ru/dishes/'+id+'/composition', {
+            headers: {
+              'Authorization': localStorage.getItem('token') 
+            }
+          }).then(function(response){
             this.compositions = response.body;
           });
       },
       fetchtoppings(id){
-          this.$http.get('http://arusremservis.ru/dishes/'+id+'/toppings')
-          .then(function(response){
+          this.$http.get('http://arusremservis.ru/dishes/'+id+'/toppings', {
+            headers: {
+              'Authorization': localStorage.getItem('token') 
+            }
+          }).then(function(response){
             this.toppings = response.body;
           });
       },
       fetchlocations(id){
-          this.$http.get('http://arusremservis.ru/dishes/'+id+'/locations')
-          .then(function(response){
+          this.$http.get('http://arusremservis.ru/dishes/'+id+'/locations', {
+            headers: {
+              'Authorization': localStorage.getItem('token') 
+            }
+          }).then(function(response){
             this.locations = response.body;
           });
       },
       deletedish(id){
-          this.$http.delete('http://arusremservis.ru/users/delete/'+id)
-          .then(function(response){
+          this.$http.post('http://arusremservis.ru/dishes/'+id, {
+            headers: {
+              'Authorization': localStorage.getItem('token') 
+            }
+          }).then(function(response){
             this.$router.push({path: '/', query: {alert: 'dish Deleted'}});
           });
       }

@@ -51,10 +51,14 @@
                     avatar: this.customer.avatar,
                 }
 
-                this.$http.post('http://arusremservis.ru/users', newCustomer)
-                    .then(function(response){
-                        this.$router.push({path: '/', query: {alert: 'Customer Added'}});
-                    });
+                this.$http.post('http://arusremservis.ru/users', newCustomer, {
+                  headers: {
+                    'Authorization': localStorage.getItem('token') 
+                  }
+                }).then(function(response){
+                    console.log(response);
+                    this.alert = 'Клиент добавлен!';     
+                });
 
                 e.preventDefault();
             }
@@ -67,7 +71,6 @@
     }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>

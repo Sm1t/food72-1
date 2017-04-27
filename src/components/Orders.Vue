@@ -25,7 +25,7 @@
             <td>{{ order.completed }}</td>
             <td>{{ order.payStatus }}</td>
             <td><pre>{{ enumDishes(order.formatedDishes) }}</pre></td>
-            <td><router-link class="btn btn-default" v-bind:to="'/order/'+order._id">Подробнее</router-link></td>
+            <td><router-link class="btn btn-info" v-bind:to="'/order/'+order._id">Подробнее</router-link></td>
           </tr>
         </tbody>
     </table>
@@ -45,7 +45,11 @@
     },
     methods: {
       fetchorders(){
-        this.$http.get('http://arusremservis.ru/orders').then(response => {
+        this.$http.get('http://arusremservis.ru/orders', {
+          headers: {
+            'Authorization': localStorage.getItem('token') 
+          }
+        }).then(response => {
           response.body.map((order) => {
             this.$http.get('http://arusremservis.ru/users/' + order.userId + '/name').then(response => {
               order.user = response.body;

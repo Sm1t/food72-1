@@ -20,7 +20,7 @@
             <td><img class="img-circle img-circle--size" v-bind:src="customer.avatar" onerror="this.src = 'http://image.freepik.com/free-icon/user-male-shape-in-a-circle-ios-7-interface-symbol_318-35357.jpg'"></td> 
             <td>{{customer.name}}</td>
             <td>{{customer.phone}}</td>
-            <td><router-link class="btn btn-default" v-bind:to="'/customer/'+customer._id">Подробнее</router-link></td>
+            <td><router-link class="btn btn-info" v-bind:to="'/customer/'+customer._id">Подробнее</router-link></td>
           </tr>
         </tbody>
     </table>
@@ -71,7 +71,7 @@
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- "scoped" - значит только для этого компонента! -->
 <style scoped>
 .img-circle--size{
   width: 70px;

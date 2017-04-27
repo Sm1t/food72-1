@@ -1,5 +1,3 @@
-  // The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
@@ -30,7 +28,6 @@ import DishAdd from './components/DishAdd'
 
 Vue.use(vueResource)
 Vue.use(VueRouter)
-//Vue.use(VueCookie)
 
 const router = new VueRouter({
   mode: 'history',
@@ -84,20 +81,26 @@ new Vue({
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><router-link to="/customers">Клиенты</router-link></li>
+            <li class="active"><router-link to="/customers">Клиенты</router-link></li>
             <li><router-link to="/orders">Заказы</router-link></li>
             <li><router-link to="/dishes">Блюда</router-link></li>
             <li><router-link to="/workers">Сотрудники</router-link></li>
             <li><router-link to="/about">Справка</router-link></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Добавить<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><router-link to="/customeradd">Добавить клиента</router-link></li>
+                <li><router-link to="/orderadd">Добавить заказ</router-link></li>
+                <li><router-link to="/dishadd">Добавить блюдо</router-link></li>
+                <li><router-link to="/workeradd">Добавить сотрудника</router-link></li>
+              </ul>
+            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><router-link to="/customeradd">Добавить клиента</router-link></li>
-            <li><router-link to="/orderadd">Добавить заказ</router-link></li>
-            <li><router-link to="/dishadd">Добавить блюдо</router-link></li>
-            <li><router-link to="/workeradd">Добавить сотрудника</router-link></li>
-            <li><router-link to="/login">Войти</router-link></li>
+            <li class="active"></li>
+            <li class="active"><router-link to="/login">Войти</router-link></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav>
       <router-view></router-view>

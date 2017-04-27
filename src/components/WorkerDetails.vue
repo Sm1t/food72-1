@@ -1,6 +1,6 @@
 <template>
   <div class="details container">
-    <router-link to="/">Назад</router-link>
+    <router-link class="btn btn-info" to="/">Назад</router-link>
     <h1 class="page-header">{{worker.name}} 
             <router-link class="btn btn-primary" v-bind:to="'/workerEdit/'+worker._id">Редактировать</router-link>
             <button class="btn btn-danger" v-on:click="deleteworker(worker._id)">Удалить</button>
@@ -24,8 +24,11 @@ export default {
   },
   methods:{
       fetchworker(id){
-          this.$http.get('http://arusremservis.ru/employees/'+id)
-          .then(function(response){
+          this.$http.get('http://arusremservis.ru/employees/'+id, {
+            headers: {
+              'Authorization': localStorage.getItem('token') 
+            }
+          }).then(function(response){
             this.worker = response.body;
           });
       },

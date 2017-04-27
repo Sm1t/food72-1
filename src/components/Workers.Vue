@@ -18,7 +18,7 @@
             <td>{{worker.name}}</td>
             <td>{{worker.surname}}</td>
             <td>{{worker.position}}</td>            
-            <td><router-link class="btn btn-default" v-bind:to="'/worker/'+worker._id">Подробнее</router-link></td>
+            <td><router-link class="btn btn-info" v-bind:to="'/worker/'+worker._id">Подробнее</router-link></td>
           </tr>
         </tbody>
     </table>
@@ -38,8 +38,11 @@
     },
     methods: {
       fetchworkers(){
-        this.$http.get('http://arusremservis.ru/employees')
-          .then(function(response){
+        this.$http.get('http://arusremservis.ru/employees', {
+          headers: {
+            'Authorization': localStorage.getItem('token') 
+          }
+        }).then(function(response){
             this.workers = response.body;
           });
       },

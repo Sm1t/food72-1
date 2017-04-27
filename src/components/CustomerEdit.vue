@@ -42,8 +42,11 @@
     },
     methods: {
         fetchCustomer(id){
-            this.$http.get('http://arusremservis.ru/users/'+id)
-            .then(function(response){
+            this.$http.get('http://arusremservis.ru/users/'+id, {
+              headers: {
+                'Authorization': localStorage.getItem('token') 
+              }
+            }).then(function(response){
                 this.customer = response.body;
             });
         },
@@ -58,9 +61,13 @@
                     
                 }
 
-                this.$http.put('http://arusremservis.ru/users/update/'+this.$route.params.id, updCustomer)
+                this.$http.push('http://arusremservis.ru/users/'+this.$route.params.id, updCustomer, {
+                    headers: {
+                        'Authorization': localStorage.getItem('token') 
+                    }
+                })
                     .then(function(response){
-                        this.$router.push({path: '/', query: {alert: 'Customer Updated'}});
+                        this.$router.push({path: '/', query: {alert: 'Данные о клиенте обновлены!'}});
                     });
 
                 e.preventDefault();
@@ -77,7 +84,6 @@
     }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>

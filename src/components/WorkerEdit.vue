@@ -21,7 +21,7 @@
                 <input type="text" class="form-control" placeholder="Должность" v-model="worker.position">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Применить</button>
+        <button type="submit" class="btn btn-primary" v-on:click="updateworker  (worker._id)">Применить</button>
     </form>
   </div>
 </template>
@@ -38,8 +38,11 @@
     },
     methods: {
         fetchworker(id){
-            this.$http.get('http://arusremservis.ru/employees/'+id)
-            .then(function(response){
+            this.$http.get('http://arusremservis.ru/employees/'+id, {
+              headers: {
+                'Authorization': localStorage.getItem('token') 
+              }
+            }).then(function(response){
                 this.worker = response.body;
             });
         },
@@ -53,12 +56,14 @@
                     position: this.worker.position,          
                 }
 
-                this.$http.post('http://arusremservis.ru/employees/'+this.$route.params.id, updworker)
-                    .then(function(response){
-                        console.log(response);
-                        this.alert = 'Сотрудник обновлён!';
-                        /*this.$router.push({path: '/', query: {alert: 'worker Updated'}});*/
-                    });
+                this.$http.post('http://arusremservis.ru/employees/'+/*this.$route.params.*/id, updworker, {
+                  headers: {
+                    'Authorization': localStorage.getItem('token') 
+                  }
+                }).then(function(response){
+                    console.log(response);
+                    this.alert = 'Данные о сотруднике обновлены!';
+                });
 
                 e.preventDefault();
             }

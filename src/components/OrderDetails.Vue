@@ -1,6 +1,6 @@
 <template>
   <div class="details container">
-    <router-link to="/">Назад</router-link>
+    <router-link class="btn btn-info" to="/">Назад</router-link>
     <h1 class="page-header">{{order.userId}} 
             <router-link class="btn btn-primary" v-bind:to="'/orderedit/'+order._id">Редактировать</router-link>
             <button class="btn btn-danger" v-on:click="deleteorder(order._id)">Удалить</button>
@@ -22,7 +22,8 @@ export default {
   name: 'orderdetails',
   data () {
     return {
-      order: ''
+      order: '',
+      orders: []
     }
   },
   methods:{
@@ -32,6 +33,28 @@ export default {
             this.order = response.body;
           });
       },
+
+        /*fetchorder(id){
+        this.$http.get('http://arusremservis.ru/orders/'+id, {
+          headers: {
+            'Authorization': localStorage.getItem('token') 
+          }
+        }).then(response => {
+          response.body.map((order) => {
+            this.$http.get('http://arusremservis.ru/users/' + order.userId + '/name').then(response => {
+              order.user = response.body;
+              order.formatedDishes = [];
+              order.dishes.map((dishes) => {
+                this.$http.get('http://arusremservis.ru/dishes/' + dishes.dishId + '/name').then(response => {
+                  order.formatedDishes.push({'Наименование': response.body, 'Количество': dishes.quantity});
+                })
+              })
+              this.orders.push(order);
+            });
+          });
+        });
+      },*/
+
       deleteorder(id){
           this.$http.delete('http://arusremservis.ru/users/orders/'+id)
           .then(function(response){

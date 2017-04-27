@@ -58,8 +58,11 @@
     },
     methods: {
         fetchdish(id){
-            this.$http.get('http://arusremservis.ru/dishes/'+id)
-            .then(function(response){
+            this.$http.get('http://arusremservis.ru/dishes/'+id, {
+              headers: {
+                'Authorization': localStorage.getItem('token') 
+              }
+            }).then(function(response){
                 this.dish = response.body;
             });
         },
@@ -80,10 +83,13 @@
                     
                 }
 
-                this.$http.put('http://arusremservis.ru/users/update/'+this.$route.params.id, upddish)
-                    .then(function(response){
-                        this.$router.push({path: '/', query: {alert: 'dish Updated'}});
-                    });
+                this.$http.put('http://arusremservis.ru/dishes/'+this.$route.params.id, upddish, {
+                  headers: {
+                    'Authorization': localStorage.getItem('token') 
+                  }
+                }).then(function(response){
+                    this.$router.push({path: '/', query: {alert: 'Информация о блюде обновлена!'}});
+                });
 
                 e.preventDefault();
             }

@@ -60,11 +60,14 @@
                     password: this.worker.password,
                 }
 
-                this.$http.post('http://arusremservis.ru/employees/login', newWorker)
-                    .then(function(response){
-                        console.log(response);
-                        this.alert = 'Сотрудник добавлен!';                      
-                    });
+                this.$http.post('http://arusremservis.ru/employees/login', newWorker, {
+                  headers: {
+                    'Authorization': localStorage.getItem('token') 
+                  }
+                }).then(function(response){
+                    console.log(response);
+                    this.alert = 'Сотрудник добавлен!';                      
+                });
 
                 e.preventDefault();
             }
