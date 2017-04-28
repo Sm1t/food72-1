@@ -81,7 +81,7 @@ new Vue({
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><router-link to="/customers">Клиенты</router-link></li>
+            <li><router-link to="/customers">Клиенты</router-link></li>
             <li><router-link to="/orders">Заказы</router-link></li>
             <li><router-link to="/dishes">Блюда</router-link></li>
             <li><router-link to="/workers">Сотрудники</router-link></li>

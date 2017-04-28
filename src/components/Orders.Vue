@@ -11,9 +11,9 @@
             <th>Цена</th>
             <th>Время</th>
             <th>Статус</th>
-            <th>Завершен</th>
-            <th>Оплачен</th>
             <th>Блюда</th>
+            <th>Стоимость</th>
+                        <th>Оплачен</th>
           </tr>
         </thead>
         <tbody>
@@ -22,9 +22,9 @@
             <td>{{ order.totalPrice }}</td>
             <td>{{ order.time }}</td>
             <td>{{ order.status }}</td>
-            <td>{{ order.completed }}</td>
-            <td>{{ order.payStatus }}</td>
             <td><pre>{{ enumDishes(order.formatedDishes) }}</pre></td>
+            <td>{{ order.totalPrice }}</td>
+            <td>{{ order.payStatus }}</td>
             <td><router-link class="btn btn-info" v-bind:to="'/order/'+order._id">Подробнее</router-link></td>
           </tr>
         </tbody>
