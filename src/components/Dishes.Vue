@@ -20,7 +20,7 @@
         <tbody>
           <tr v-for="dish in filterBy(dishes, filterInput)">
             <!--<td>{{dish._id}}</td>-->
-            <td><img class="img-circle img-circle--size" v-bind:src="dish.dishPicture" onerror="this.src = 'http://image.freepik.com/free-icon/no-translate-detected_318-27155.jpg'"></td> 
+            <td><div class="img-circle img-circle--size" v-bind:style="{backgroundImage: 'url(' + dish.dishPicture + ')', backgroundSize: 'cover', backgroundPosition: 'center' }"></div></td> 
             <td>{{dish.name}}</td>
             <td>{{dish.category}}</td>
             <td>{{dish.callories}}</td>
